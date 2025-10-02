@@ -23,7 +23,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.rooms.create');
     }
 
     /**
@@ -31,7 +31,10 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $roomCreated = Room::create($request->all('room_number', 'room_type', 'price_per_night', 'hotel_id'));
+        if ($roomCreated) {
+            return redirect('admin/rooms');
+        }
     }
 
     /**
@@ -39,7 +42,8 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $room = DB::table('rooms')->find($id);
+        return view('admin.rooms.room', compact('room'));
     }
 
     /**
@@ -47,7 +51,8 @@ class RoomController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $hotel = DB::table('rooms')->find($id);
+        return view('admin.rooms.edit', compact('room'));
     }
 
     /**
@@ -55,7 +60,10 @@ class RoomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $roomUpdated = DB::table('rooms')->where('id', $id)->update($request->all('room_number', 'room_type', 'price_per_night', 'hotel_id'));
+        if ($roomUpdated) {
+            return redirect('admin/rooms');
+        }
     }
 
     /**
@@ -63,6 +71,9 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $roomDestroyed = DB::table('rooms')->where('id', $id)->delete($id);
+        if ($roomDestroyed) {
+            return redirect('admin/rooms');
+        }
     }
 }
