@@ -44,7 +44,7 @@ class RoomController extends Controller
     public function show(string $id)
     {
         $room = DB::table('rooms')->find($id);
-        return view('admin.rooms.room', compact('room'));
+        return view('admin.rooms.', compact('room'));
     }
 
     /**

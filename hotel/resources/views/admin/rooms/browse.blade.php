@@ -10,7 +10,8 @@
       <article class="rounded-2xl bg-white p-6 shadow ring-1 ring-black/5">
         <h3 class="text-xl font-semibold text-slate-900">{{ $room->room_nb}}</h3>
         <p class="mt-2 text-slate-600">{{ $room->room_type }}</p>
-        <a href="#" class="mt-4 inline-flex items-center gap-2 font-semibold text-blue-600 hover:text-blue-700">
+        <a href="{{ route('admin.rooms.show', $room->id)}}"
+          class="mt-4 inline-flex items-center gap-2 font-semibold text-blue-600 hover:text-blue-700">
           View details <span aria-hidden="true">&rarr;</span>
         </a>
       </article>
