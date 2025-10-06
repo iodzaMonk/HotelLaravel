@@ -27,19 +27,19 @@
     </section>
 
     <form
-      class="relative z-10 grid gap-4 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5 sm:grid-cols-2 lg:grid-cols-[2fr_repeat(3,_1fr)_auto] lg:items-end"
+      class="relative z-10 grid gap-4 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5 overflow-hidden sm:grid-cols-2 lg:grid-cols-[3fr_repeat(2,_1.5fr)_1fr_auto] lg:items-end"
       action="">
       <label class="flex flex-col gap-2">
         <span class="text-sm font-semibold text-slate-600">{{ __('hub.search.destination') }}</span>
         <input placeholder="{{ __('hub.search.destination_placeholder') }}" type="text"
           class="rounded-xl border border-slate-200 px-4 py-3 text-base shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
       </label>
-      <label class="flex flex-col gap-2">
+      <label class="flex flex-col gap-2 lg:min-w-[12rem]">
         <span class="text-sm font-semibold text-slate-600">{{ __('hub.search.check_in') }}</span>
         <input id="check-in" type="text" placeholder="{{ __('hub.search.date_placeholder') }}" autocomplete="off"
           class="rounded-xl border border-slate-200 px-4 py-3 text-base shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
       </label>
-      <label class="flex flex-col gap-2">
+      <label class="flex flex-col gap-2 lg:min-w-[12rem]">
         <span class="text-sm font-semibold text-slate-600">{{ __('hub.search.check_out') }}</span>
         <input id="check-out" type="text" placeholder="{{ __('hub.search.date_placeholder') }}" autocomplete="off"
           class="rounded-xl border border-slate-200 px-4 py-3 text-base shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
@@ -50,7 +50,7 @@
           class="rounded-xl border border-slate-200 px-4 py-3 text-base shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" />
       </label>
       <button
-        class="inline-flex h-full w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700 sm:col-span-2 lg:col-span-1 lg:w-auto lg:self-stretch"
+        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700 sm:col-span-2 lg:col-span-1 lg:w-auto"
         type="submit">
         {{ __('hub.search.submit') }}
       </button>
@@ -71,7 +71,8 @@
         <h3 class="text-xl font-semibold">{{ __('hub.offers.heading') }}</h3>
         <p class="mt-3 text-blue-100">{{ __('hub.offers.body') }}</p>
         <div class="mt-5 flex flex-wrap items-center gap-3 text-sm uppercase tracking-[0.25em] text-blue-100/80">
-          <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1">{{ __('hub.offers.badges.discount') }}</span>
+          <span
+            class="inline-flex items-center rounded-full bg-white/10 px-3 py-1">{{ __('hub.offers.badges.discount') }}</span>
           <span>{{ __('hub.offers.badges.breakfast') }}</span>
           <span>{{ __('hub.offers.badges.checkout') }}</span>
         </div>
@@ -79,10 +80,9 @@
 
       <section class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5">
         <h3 class="text-xl font-semibold text-slate-900">{{ __('hub.testimonials.heading') }}</h3>
-        @php($testimonials = trans('hub.testimonials.items'))
         <ul class="mt-4 space-y-3 text-slate-600">
-          @foreach ($testimonials as $quote)
-            <li>{{ $quote }}</li>
+          @foreach (__('hub.testimonials.items') as $item)
+            <p>{{$item}}</p>
           @endforeach
         </ul>
       </section>

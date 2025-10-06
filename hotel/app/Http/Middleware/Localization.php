@@ -9,25 +9,22 @@ use Illuminate\Support\Facades\Cookie;
 
 class Localization
 {
-    public function handle(Request $request, Closure $next)
-    {
-        $availableLocales = config('app.available_locales', []);
-        $locale = session('locale') ?? $request->cookie('locale') ?? config('app.locale');
+  public function handle(Request $request, Closure $next)
+  {
+    $availableLocales = config('app.available_locales', []);
 
-        if (! in_array($locale, $availableLocales, true)) {
-            $locale = config('app.fallback_locale');
-        }
+    $candidate = $request->route('locale')
+      ?? $request->query('lang')
+      ?? $request->cookie('locale')
+      ?? config('app.locale');
 
-        if (session('locale') !== $locale) {
-            session()->put('locale', $locale);
-        }
+    $locale = in_array($candidate, $availableLocales, true)
+      ? $candidate
+      : config('app.fallback_locale');
 
-        if ($request->cookie('locale') !== $locale) {
-            Cookie::queue('locale', $locale, 60 * 24 * 365);
-        }
-
-        App::setLocale($locale);
-
-        return $next($request);
-    }
+    // Apply for this request
+    App::setLocale($locale);
+    $response = $next($request);
+    return $response;
+  }
 }

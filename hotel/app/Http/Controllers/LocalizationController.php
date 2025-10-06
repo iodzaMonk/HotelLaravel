@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Http\Controllers;
 
@@ -17,7 +17,6 @@ class LocalizationController extends Controller
         }
 
         App::setLocale($locale);
-        session()->put('locale', $locale);
         Cookie::queue('locale', $locale, 60 * 24 * 365);
 
         return redirect()->back();
