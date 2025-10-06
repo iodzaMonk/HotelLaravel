@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Create Hotel')
+@section('title', 'Create room')
 
 @section('content')
 <div class="flex items-center gap-4">
-  <a href="{{ route('admin.hotels.index') }}"
+  <a href="{{ route('admin.rooms.index') }}"
     class="inline-flex items-center gap-2 rounded-full border border-transparent bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
     <span aria-hidden="true">&larr;</span>
     Back
@@ -14,7 +14,7 @@
 <section class="mt-10">
   <div class="mx-auto max-w-3xl rounded-3xl bg-white p-10 shadow-xl ring-1 ring-slate-200">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-slate-900">Create a hotel</h1>
+      <h1 class="text-3xl font-bold text-slate-900">Create a room</h1>
       <p class="mt-2 text-sm text-slate-500">Fill in the details below to add a new room to the collection.</p>
     </div>
 
@@ -28,26 +28,41 @@
     </div>
     @endif
 
-    <form action="{{ route('admin.hotels.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.rooms.store') }}" method="POST" class="space-y-6">
       @csrf
       <div class="grid gap-6 md:grid-cols-2">
         <div class="flex flex-col gap-2">
-          <label for="hotel_name" class="text-sm font-semibold text-slate-600">Hotel name</label>
-          <input id="hotel_name" name="hotel_name" type="text" value="{{ old('hotel_name') }}"
-            placeholder="e.g. Skyline Retreat" required
+          <label for="room_type" class="text-sm font-semibold text-slate-600">Room type</label>
+          <input id="room_type" name="room_type" type="text" value="{{ old('room_type') }}"
+            placeholder="Grand deluxe" required
             class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="hotel_address" class="text-sm font-semibold text-slate-600">Hotel address</label>
-          <input id="hotel_address" name="hotel_address" type="text" value="{{ old('hotel_address') }}"
-            placeholder="e.g. 123 Ocean Drive, Miami" required
+          <label for="price_per_night" class="text-sm font-semibold text-slate-600">Price per night</label>
+          <input id="price_per_night" name="price_per_night" type="text" value="{{ old('price_per_night') }}"
+            placeholder="13$" required
             class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
         </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="room_number" class="text-sm font-semibold text-slate-600">Room number</label>
+          <input id="room_number" name="price_per_nroom_numberight" type="text" value="{{ old('room_number') }}"
+            placeholder="23" required
+            class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="hotel_id" class="text-sm font-semibold text-slate-600">Hotel id</label>
+          <input id="hotel_id" name="hotel_id" type="text" value="{{ old('hotel_id') }}"
+            placeholder="2" required
+            class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
+        </div>
+
       </div>
 
       <div class="flex items-center justify-end gap-3">
-        <a href="{{ route('admin.hotels.index') }}"
+        <a href="{{ route('admin.rooms.index') }}"
           class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-2 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-900">Cancel</a>
         <button type="submit"
           class="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100">

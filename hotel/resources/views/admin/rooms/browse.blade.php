@@ -3,8 +3,11 @@
 @section('title', 'Browse Rooms')
 
 @section('content')
-
-  <a href={{ route('admin.dashboard') }} class="py-4 px-8 bg-blue-600 text-lg text-white rounded-full">Back</a>
+  <div class="flex justify-between w-full">
+    <a href={{ route('admin.dashboard') }} class="py-4 px-8 bg-blue-600 text-lg text-white rounded-full">Back</a>
+    <a href="{{ route('admin.rooms.create') }}"
+      class="py-4 px-8 bg-green-600 rounded-full transition-colors text-white hover:bg-green-500">Add room</a>
+  </div>
   <section class="grid gap-6 mt-10 md:grid-cols-2 xl:grid-cols-3">
     @forelse ($rooms as $room)
       <article class="rounded-2xl bg-white p-6 shadow ring-1 ring-black/5">
