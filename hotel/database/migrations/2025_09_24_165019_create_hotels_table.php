@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->string("hotel_name");
-            $table->string("hotel_address");
+            $table->string("hotel_address")->default(null)->nullable();
             $table->string("image_repo");
         });
     }
