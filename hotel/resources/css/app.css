@@ -1,0 +1,11 @@
+﻿@import "tailwindcss";
+@import "flatpickr/dist/themes/material_blue.css";
+
+@layer utilities {
+    .admin-card {
+        background-image: var(--admin-card-bg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
