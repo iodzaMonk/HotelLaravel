@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $room->room_nb . 'Hotel')
+@section('title', $room->room_number . 'Hotel')
 
 @section('content')
   @php
@@ -28,7 +28,7 @@
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-3">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-500">Room profile</p>
-            <h1 class="text-4xl font-bold tracking-tight text-slate-900">Room #{{ $room->room_nb}}</h1>
+            <h1 class="text-4xl font-bold tracking-tight text-slate-900">Room #{{ $room->room_number}}</h1>
             <p class="text-base text-slate-600">Room type: {{ $room->room_type }}</p>
           </div>
 
