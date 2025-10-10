@@ -46,6 +46,14 @@
         </div>
       </div>
 
+      <div class="flex flex-col gap-2">
+        <label for="hotel_address" class="text-sm font-semibold text-slate-600">Hotel Image</label>
+        <input id="hotel_address" name="hotel_address" type="file" multiple value="{{ old('hotel_address') }}"
+          placeholder="e.g. 123 Ocean Drive, Miami" required
+          class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
+
+      </div>
+
       <div class="flex items-center justify-end gap-3">
         <a href="{{ route('admin.hotels.index') }}"
           class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-2 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-900">Cancel</a>
