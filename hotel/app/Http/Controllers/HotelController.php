@@ -46,7 +46,6 @@ class HotelController extends Controller
     public function show(string $id)
     {
         $hotel = DB::table('hotels')->find($id);
-        // dump($hotel);
         return view('admin.hotels.hotel', compact('hotel'));
     }
 
