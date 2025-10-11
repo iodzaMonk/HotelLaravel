@@ -28,7 +28,7 @@
     </div>
     @endif
 
-    <form action="{{ route('admin.hotels.update', $hotel->id) }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.hotels.update', $hotel->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
       @csrf
       @method('PATCH')
       <div class="grid gap-6 md:grid-cols-2">
@@ -45,6 +45,18 @@
             placeholder="e.g. 123 Ocean Drive, Miami" required
             class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
         </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="hotel_image" class="text-sm font-semibold text-slate-600">Hotel image</label>
+        @php($image = $hotel->temporary_image_url ?? $hotel->image_url)
+        @if ($image)
+          <img src="{{ $image }}" alt="{{ $hotel->hotel_name }}"
+            class="h-40 w-full rounded-xl object-cover">
+        @endif
+        <input id="hotel_image" name="hotel_image" type="file"
+          class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm transition focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100">
+        <p class="text-xs text-slate-500">Leave empty to keep the current image.</p>
       </div>
 
       <div class="flex items-center justify-end gap-3">

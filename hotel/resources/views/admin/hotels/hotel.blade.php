@@ -4,8 +4,8 @@
 
 @section('content')
 @php
-$hasEditRoute = \Illuminate\Support\Facades\Route::has('admin.hotels.edit');
-$hasDestroyRoute = \Illuminate\Support\Facades\Route::has('admin.hotels.destroy');
+  $hasEditRoute = \Illuminate\Support\Facades\Route::has('admin.hotels.edit');
+  $hasDestroyRoute = \Illuminate\Support\Facades\Route::has('admin.hotels.destroy');
 @endphp
 
 <div class="flex flex-wrap items-center justify-between gap-4">
@@ -26,6 +26,10 @@ $hasDestroyRoute = \Illuminate\Support\Facades\Route::has('admin.hotels.destroy'
   <div class="grid gap-8 lg:grid-cols-[2fr,1fr]">
     <article class="rounded-3xl bg-white p-10 shadow-xl ring-1 ring-slate-200">
       <div class="flex flex-col gap-6">
+        @php($image = $hotel->temporary_image_url ?? $hotel->image_url)
+        @if ($image)
+          <img src="{{ $image }}" alt="{{ $hotel->hotel_name }}" class="h-56 w-full rounded-3xl object-cover">
+        @endif
         <div class="flex flex-col gap-3">
           <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-500">Hotel profile</p>
           <h1 class="text-4xl font-bold tracking-tight text-slate-900">{{ $hotel->hotel_name }}</h1>
@@ -56,25 +60,25 @@ $hasDestroyRoute = \Illuminate\Support\Facades\Route::has('admin.hotels.destroy'
         <p class="mt-2 text-sm text-blue-100">Manage this listing right from here.</p>
         <div class="mt-6 flex flex-col gap-3">
           @if ($hasEditRoute)
-          <a href={{ route('admin.hotels.edit', $hotel->id) }}
-            class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-blue-600 shadow transition hover:text-blue-700 hover:shadow-md">Edit
-            hotel</a>
+            <a href={{ route('admin.hotels.edit', $hotel->id) }}
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-blue-600 shadow transition hover:text-blue-700 hover:shadow-md">Edit
+              hotel</a>
           @endif
 
           @if ($hasDestroyRoute)
-          <form action="{{ route('admin.hotels.destroy', $hotel->id) }}" method="POST" class="inline-flex">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-              class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60">
-              Delete hotel
-            </button>
-          </form>
+            <form action="{{ route('admin.hotels.destroy', $hotel->id) }}" method="POST" class="inline-flex">
+              @csrf
+              @method('DELETE')
+              <button type="submit"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60">
+                Delete hotel
+              </button>
+            </form>
           @else
-          <button type="button" disabled
-            class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white/70">
-            Delete option unavailable
-          </button>
+            <button type="button" disabled
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white/70">
+              Delete option unavailable
+            </button>
           @endif
         </div>
       </div>

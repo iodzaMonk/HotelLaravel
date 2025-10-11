@@ -19,38 +19,34 @@
           <a class="transition hover:text-slate-900"
             href="{{ route('admin.dashboard') }}">{{ __('hotel.nav.explore') }}</a>
           @endadmin
-          <a class="transition hover:text-slate-900" href="#offers">{{ __('hotel.nav.offers') }}</a>
-          <a class="transition hover:text-slate-900" href="#">{{ __('hotel.nav.support') }}</a>
         </nav>
       </div>
       @auth
-      <div>
-        Hi there, {{ Auth::user()->name }}
-      </div>
+        <div>
+          Hi there, {{ Auth::user()->name }}
+        </div>
       @endauth
       <div class="flex items-center gap-4">
         <div class="flex gap-2 text-xs font-semibold uppercase text-slate-500">
           @foreach (config('app.available_locales') as $lang)
-          <a href="{{ route('locale.switch', ['locale' => $lang])  }}"
-            class=" {{ app()->getLocale() === $lang ? 'text-blue-600' : 'hover:text-slate-900' }}">
-            {{ strtoupper($lang) }}
-          </a>
+            <a href="{{ route('locale.switch', ['locale' => $lang])  }}"
+              class=" {{ app()->getLocale() === $lang ? 'text-blue-600' : 'hover:text-slate-900' }}">
+              {{ strtoupper($lang) }}
+            </a>
           @endforeach
         </div>
-        <a href="#"
-          class="text-sm font-semibold text-slate-600 transition hover:text-slate-900">{{ __('hotel.nav.contact') }}</a>
         @guest
-        <a href="{{ route("show.login") }}"
-          class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">{{ __('hotel.nav.login') }}</a>
-        <a href="{{ route("show.register") }}"
-          class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">{{ __('Register') }}</a>
+          <a href="{{ route("show.login") }}"
+            class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">{{ __('hotel.nav.login') }}</a>
+          <a href="{{ route("show.register") }}"
+            class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">{{ __('Register') }}</a>
         @endguest
         @auth
-        <form action="{{ route('logout') }}" method="POST" class="m-0">
-          @csrf
-          <button
-            class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">Logout</button>
-        </form>
+          <form action="{{ route('logout') }}" method="POST" class="m-0">
+            @csrf
+            <button
+              class="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">Logout</button>
+          </form>
         @endauth
       </div>
     </div>

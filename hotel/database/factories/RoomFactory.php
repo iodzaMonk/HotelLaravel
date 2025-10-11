@@ -17,11 +17,15 @@ class RoomFactory extends Factory
      */
     public function definition(): array
     {
-        $hotels = Hotel::all()->pluck('id')->toArray();
         return [
-            'room_nb' => fake()->randomNumber(),
-            'room_type' => fake()->name(),
-            'hotel_id' => fake()->randomElement($hotels),
+            'room_number' => fake()->unique()->numberBetween(100, 999),
+            'room_type' => fake()->randomElement(['Single', 'Double', 'Suite', 'Deluxe']),
+            'price_per_night' => fake()->numberBetween(80, 500),
         ];
+    }
+
+    public function forHotel(?Hotel $hotel = null): static
+    {
+        return $this->for($hotel ?? Hotel::factory());
     }
 }

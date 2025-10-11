@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 // home route
 Route::get("/", fn() => view("hub"))->name("home");
 
+// public catalog
+Route::get('/catalog', [HotelController::class, 'catalog'])->name('hotels.catalog');
+Route::get('/hotels/suggest', [HotelController::class, 'suggest'])->name('hotels.suggest');
+
 // admin routes
 Route::prefix("admin")->middleware(['auth', 'verified', 'admin'])
     ->name("admin.")
