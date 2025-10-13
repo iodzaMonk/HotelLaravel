@@ -1,11 +1,31 @@
-﻿@import "tailwindcss";
-@import "flatpickr/dist/themes/material_blue.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@layer utilities {
-    .admin-card {
-        background-image: var(--admin-card-bg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+.admin-card {
+    position: relative;
+    background-image: var(--admin-card-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.admin-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.7),
+        rgba(15, 23, 42, 0.5)
+    );
+}
+
+.admin-card > * {
+    position: relative;
+}
+
+.dark .rdp-day:hover:not([aria-disabled="true"]):not([aria-selected="true"]) {
+    background-color: rgb(30 41 59);
+    color: rgb(226 232 240);
 }
